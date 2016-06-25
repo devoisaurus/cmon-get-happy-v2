@@ -16,69 +16,20 @@
     </div>
   </nav>
 
-	<div ng-controller="GetHappyCtrl">
-		 <div class="row">
-      	<div class="col s6 offset-s3">
-      		<button class="col s6" ng-click="newCard()">New card</button>
-      		<button class="col s6" ng-click="allCards()">All cards</button>
-      	</div>
-    	</div>
-
+	<div>
     <div class="row">
     	<div class="col s10 col offset-s1 main-container">
-    		<div class="col s12" ng-show="showListView">
-    			<h1>All cards</h1>
-    				<div ng-repeat="card in activities">
-        			<div class="col s12 m6">
-          			<div class="card-panel purple">
-            			<div class="card-content white-text">
-              			<span class="card-title">{{card.name}}</span>
-              			<div>Description: {{card.description}}</div>
-              			<div>Cost: {{card.cost}}</div>
-              			<div>Time: {{card.time}}</div>
-              			<div>Location: {{card.location}}</div>
-            			</div>
-          			</div>
-        			</div>
-    				</div>
-    		</div>
-
-    		<div class="col s12" ng-show="!showListView">
-    			<h1>New card</h1>
-    				<form class="col s12">
-    					<div class="row">
-        				<div class="input-field col s12">
-          				<input id="name" type="text" ng-model="newCard.name">
-          				<label for="name">Name</label>
-        				</div>
-        				<div class="input-field col s12">
-          				<input id="description" type="text" ng-model="newCard.description">
-          				<label for="description">Description</label>
-          			</div>
-        				<div class="input-field col s6">
-          				<input id="cost" type="text" ng-model="newCard.cost">
-          				<label for="cost">Cost</label>
-        				</div>
-        				<div class="input-field col s6">
-          				<input id="time" type="text" ng-model=
-          				newCard.time>
-          				<label for="time">Time</label>
-        				</div>
-        				<div class="input-field col s12">
-          				<input id="location" type="text" ng-model="newCard.location">
-          				<label for="location">Location</label>
-        				</div>
-      					<button ng-click="addNewCard()">Add</button>
-      				</div>
-    				</form>
-    		</div>
+				<div class="col s12" ng-view>
+				</div>
     	</div>
     </div>
+  </div>
 
 
 	<script type="text/javascript" src="lib/bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="lib/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/Materialize/dist/js/materialize.min.js"></script>
+	<script type="text/javascript" src="lib/bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="lib/bower_components/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="app/app.js"></script>
 	<script type="text/javascript" src="app/controllers/NavCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/GetHappyCtrl.js"></script>
