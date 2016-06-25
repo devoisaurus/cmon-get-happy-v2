@@ -1,17 +1,12 @@
-app.controller("AllCardsCtrl", function($scope, $http){
+app.controller("AllCardsCtrl", function($scope, $http, $location, cardStorage){
 	$scope.activities = [];
-	var getCards = function(){
-		$http.get("https://cmon-get-happy.firebaseio.com/activities.json")
-		.success(function(cardObject){
-				var cardList = cardObject;
-				Object.keys(cardList).forEach(function(key){
-						cardList[key].id=key;
-			$scope.activities.push(cardList[key]);
-		})
-	});
-}
 
-getCards();
+	cardStorage.getCardList().then(function(cardList){
+		console.log("cardList from promise", cardList);
+		$scope.activities = cardList;
+	})
+
+
 	$scope.cardDelete = function(cardId){
 		console.log("cardId", cardId);
 		$http
