@@ -1,0 +1,19 @@
+{
+  "name": "lib",
+  "homepage": "https://github.com/devoisaurus/cmon-get-happy-v2",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "jquery": "^3.0.0",
+    "Materialize": "materialize#^0.97.6"
+  }
+}
