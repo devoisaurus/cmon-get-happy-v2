@@ -6,49 +6,57 @@ app.controller("NavCtrl", function($scope){
 
 app.controller("GetHappyCtrl", function($scope){
 	$scope.welcome = "hello";
-	$scope.showListView = false;
-	$scope.card="";
+	$scope.showListView = true;
+	$scope.name="";
 	$scope.newCard = {};
 
 	$scope.activities = [
 	{
 		id: 0,
-		cost: "$",
-		description: "Take a walk in the park",
-		location: "outdoors",
 		name: "Take a walk",
-		public: true,
-		time: "10 minutes"
-},
-	{
-		id: 1,
+		description: "Take a walk in the park",
 		cost: "$",
-		description: "Remove 3 things",
-		location: "indoors",
-		name: "declutter",
-		public: true,
-		time: "10 minutes"
+		time: "10 minutes",
+		location: "outdoors",
+		public: true
 	},
 	{
-		id: 3,
-		cost: "$$",
+		id: 1,
+		name: "declutter",
+		description: "Remove 3 things",
+		cost: "$",
+		time: "10 minutes",
+		location: "indoors",
+		public: true
+	},
+	{
+		id: 2,
+		name: "test",
 		description: "words",
+		cost: "$$",
+		time: "time",
 		location: "in out",
-		name: "trst",
-		public: true,
-		time: "time"
+		public: true
 	}
-];
+]
 
 
 	$scope.newCard = function(){
 		console.log("you clicked new card");
-	$scope.showListView = false;
+		$scope.showListView = false;
 };
 
 $scope.allCards = function(){
 	console.log("you clicked all cards");
 	$scope.showListView = true;
 };
+
+$scope.addNewCard = function(){
+	$scope.newCard.public = true;
+	$scope.newCard.id = $scope.activities.length;
+	console.log("you added a new card", $scope.newCard);
+	$scope.activities.push($scope.newCard);
+	$scope.newCard="";
+}
 
 });
