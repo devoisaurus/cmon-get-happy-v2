@@ -7,6 +7,14 @@
 	<title>C'mon, get happy!</title>
 </head>
 <body ng-app="GetHappy">
+ <nav>
+    <div class="nav-wrapper" ng-controller="NavCtrl">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down" ng-repeat="link in navItems">
+        <li><a href="#">{{link.name}}</a></li>
+      </ul>
+    </div>
+  </nav>
 
 	<div ng-controller="GetHappyCtrl">
 		<h1>C'mon, get happy</h1>
