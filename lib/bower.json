@@ -14,6 +14,8 @@
   "dependencies": {
     "angular": "^1.5.7",
     "jquery": "^3.0.0",
-    "Materialize": "materialize#^0.97.6"
+    "Materialize": "materialize#^0.97.6",
+    "angular-route": "^1.5.7",
+    "angularfire": "^2.0.1"
   }
 }
