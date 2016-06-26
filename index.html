@@ -8,14 +8,8 @@
 		</head>
 
 		<body ng-app="GetHappy">
- 			<nav>
-    		<div class="nav-wrapper" ng-controller="NavCtrl">
-      		<a href="#" class="brand-logo">C'mon, get happy!</a>
-      			<ul id="nav-mobile" class="right hide-on-med-and-down" ng-repeat="link in navItems">
-        			<li><a ng-href="{{link.url}}">{{link.name}}</a></li>
-      			</ul>
-    		</div>
-  		</nav>
+			<div ng-include=" './partials/nav-bar.html' "></div>
+
 
 			<div>
     		<div class="row">
@@ -31,9 +25,15 @@
 	<script type="text/javascript" src="lib/bower_components/Materialize/dist/js/materialize.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="lib/bower_components/firebase/firebase.js"></script>
+	<script type="text/javascript" src="lib/bower_components/angularfire/dist/angularfire.min.js"></script>
+
 	<script type="text/javascript" src="app/app.js"></script>
+
+	<script type="text/javascript" src="app/factories/AuthFactory.js"></script>
 	<script type="text/javascript" src="app/factories/CardFactory.js"></script>
-	<script type="text/javascript" src="app/controllers/NavCtrl.js"></script>
+
+	<script type="text/javascript" src="app/controllers/LoginCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/AllCardsCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/NewCardCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/UserCardsCtrl.js"></script>

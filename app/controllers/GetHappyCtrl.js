@@ -1,3 +1,4 @@
+
 app.controller("GetHappyCtrl", function($scope){
 	$scope.welcome = "hello";
 	$scope.showListView = true;

@@ -9,12 +9,10 @@ app.controller("AllCardsCtrl", function($scope, $http, $location, cardStorage){
 
 	$scope.cardDelete = function(cardId){
 		console.log("cardId", cardId);
-		$http
-			.delete(`https://cmon-get-happy.firebaseio.com/activities/${cardId}.json`)
-			.success(function(response){
-				console.log(response);
-				$scope.activities=[];
-				getCards();
+		cardStorage.deleteCard(cardId).then(function(response){
+			cardStorage.getCardList().then(function(cardList){
+				$scope.activities = cardList;
 			});
-	};
+		});
+	}
 });
