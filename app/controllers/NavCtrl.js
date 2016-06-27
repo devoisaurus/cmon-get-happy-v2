@@ -3,7 +3,7 @@ app.controller("NavCtrl", function($scope){
 		{
 			name:"Logout",
 			url: '#/logout'
-		}, 
+		},
 		{
 			name:"See all cards",
 			url: '#/cards/all'
@@ -11,7 +11,7 @@ app.controller("NavCtrl", function($scope){
 		{
 			name:"See my cards",
 			url: '#/cards/user'
-		}, 
+		},
 		{
 			name:"Add a card",
 			url: '#/cards/add'
