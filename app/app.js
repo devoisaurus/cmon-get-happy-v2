@@ -36,12 +36,10 @@ app.config(function($routeProvider){
 		when('/login', {
 			templateUrl:'partials/login.html',
 			controller: "LoginCtrl",
-			resolve: {isAuth}
 		}).
 		when('/logout', {
 			templateUrl: 'partials/login.html',
 			controller: "LoginCtrl",
-			resolve: {isAuth}
 		}).
 		otherwise('/');
 });

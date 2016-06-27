@@ -17,9 +17,9 @@
     "Materialize": "materialize#^0.97.6",
     "angular-route": "^1.5.7",
     "angularfire": "^1.2.0",
-    "firebase": "^3.0.5"
+    "firebase": "^2.4.2"
   },
   "resolutions": {
-    "firebase": "3.x.x"
+    "firebase": "2.x.x"
   }
 }
