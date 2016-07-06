@@ -17,9 +17,6 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 				})
 				resolve(baseCards);
 				console.log("baseCards", baseCards);
-			})
-			.error(function(error){
-				reject(error);
 			});
 		});
 	};
@@ -30,16 +27,13 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 			console.log("user2", user);
 
 	return $q(function(resolve, reject){
-		$http.get(`${firebaseURL}baseCards.json`)
+		$http.post(`${firebaseURL}baseCards/users.json`)
 		.success(function(cardObject){
 			let cardCollection = cardObject;
 			Object.keys(cardCollection).forEach(function(key){
 				cardCollection[key].id=key;
 				userCards.push(cardCollection[key]);
 				resolve(userCards);
-			})
-			.error(function(error){
-				reject(error);
 			});
 		});
 	});
@@ -51,7 +45,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		console.log("user3", user);
 
 		return $q(function(resolve, reject){
-			$http.get(`${firebaseURL}baseCards.json?orderBy="uid"&equalTo="${user.uid}"`)
+			$http.get(`${firebaseURL}baseCards.users.json?orderBy="uid"&equalTo="${user.uid}"`)
 			.success(function(cardObject){
 				let cardCollection = cardObject;
 				Object.keys(cardCollection).forEach(function(key){
@@ -59,9 +53,6 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 					userActivities.push(cardCollection[key]);
 					resolve(userActivities);
 
-				})
-				.error(function(error){
-					reject(error);
 				});
 			});
 		});
