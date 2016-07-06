@@ -4,9 +4,11 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 
 	let getBaseCards = () => {
 		var baseCards = [];
+		let user = AuthFactory.getUser();
+		console.log("user", user);
 
 		return $q(function(resolve, reject){
-			$http.get(`${firebaseURL}activities.json`)
+			$http.get(`${firebaseURL}baseCards.json`)
 			.success(function(cardObject){
 				let cardCollection = cardObject;
 				Object.keys(cardCollection).forEach(function(key){
@@ -21,12 +23,34 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		});
 	};
 
-	let getUserCards = () => {
-		let userActivities = [];
+	let addToUserCards = () => {
+		var userCards = [];
 		let user = AuthFactory.getUser();
+			console.log("user2", user2);
+
+	return $q(function(resolve, reject){
+		$http.get(`${firebaseURL}baseCards/{card.id}.json`)
+		.success(function(cardObject){
+			let cardCollection = cardObject;
+			Object.keys(cardCollection).forEach(function(key){
+				cardCollection[key].id=key;
+				userCards.push(cardCollection[key]);
+				resolve(userCards);
+			})
+			.error(function(error){
+				reject(error);
+			});
+		});
+	});
+	};
+
+	let getUserCards = () => {
+		var userActivities = [];
+		let user = AuthFactory.getUser();
+		console.log("user3", user);
 
 		return $q(function(resolve, reject){
-			$http.get(`${firebaseURL}.activities.json?orderBy="uid"&equalTo="${user.uid}"`)
+			$http.get(`${firebaseURL}baseCards.json`)
 			.success(function(cardObject){
 				let cardCollection = cardObject;
 				Object.keys(cardCollection).forEach(function(key){
@@ -34,36 +58,14 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 					userActivities.push(cardCollection[key]);
 					resolve(userActivities);
 				})
-				.err(function(error){
+				.error(function(error){
 					reject(error);
 				});
 			});
 		});
 	};
 
-	let addToUserCards = (cardToAdd) => {
-		let user = AuthFactory.getUser();
-		console.log("user", user);
 
-		return $q(function(resolve, reject){
-			$http.post(`${firebaseURL}activities.json`,
-				JSON.stringify({
-					cost: cardToAdd.cost,
-					description: cardToAdd.description,
-					location: cardToAdd.location,
-					name: cardToAdd.name,
-					public: false,
-					time: cadToAdd.time,
-					uid: user.uid
-				})
-				).success(
-				function(objectFromFirebase){
-					resolve(objectFromFirebase);
-				}
-			);
-		});
-	};
-
-return {getBaseCards:getBaseCards, getUserCards:getUserCards, addToUserCards:addToUserCards};
+return {getBaseCards:getBaseCards, addToUserCards:addToUserCards, getUserCards:getUserCards};
 
 });

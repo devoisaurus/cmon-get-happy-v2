@@ -1,3 +1,5 @@
+"use strict";
+
 app.controller("NewCardCtrl", function($scope, $http, $location, cardStorage){
 	$scope.newCard = {
 		cost: "",
@@ -13,7 +15,7 @@ app.controller("NewCardCtrl", function($scope, $http, $location, cardStorage){
 		cardStorage.postNewCard($scope.newCard)
 		.then(function successCallback(response){
 			console.log(response);
-			$location.url("cards/all")
+			$location.url("cards/user")
 		});
 	};
 });
