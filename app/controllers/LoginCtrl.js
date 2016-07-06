@@ -24,7 +24,7 @@ app.controller("LoginCtrl", function($scope, $location, firebaseURL, AuthFactory
             if(error){
                 console.log(`Error creating user: ${error}`)
             } else{
-                console.log(`Created user account with uid: ${userData.uid}`)
+                console.log(`Created user account with uid: ${userData.uid}`);
                 $scope.login();
             }
         });

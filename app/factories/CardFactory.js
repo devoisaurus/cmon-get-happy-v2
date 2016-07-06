@@ -1,17 +1,19 @@
+"use strict";
+
 app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 
-	var getCardList = function(){
-		var activities = [];
-		let user = AuthFactory.getUser();
+	let getBaseCards = () => {
+		var baseCards = [];
+
 		return $q(function(resolve, reject){
-			$http.get(`${firebaseURL}activities.json?orderBy="uid"&equalTo="${user.uid}"`)
+			$http.get(`${firebaseURL}activities.json`)
 			.success(function(cardObject){
-				var cardList = cardObject;
-				Object.keys(cardList).forEach(function(key){
-					cardList[key].id=key;
-					activities.push(cardList[key]);
+				let cardCollection = cardObject;
+				Object.keys(cardCollection).forEach(function(key){
+					cardCollection[key].id=key;
+					baseCards.push(cardCollection[key]);
 				})
-				resolve(activities);
+				resolve(baseCards);
 			})
 			.error(function(error){
 				reject(error);
@@ -19,32 +21,42 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		});
 	};
 
-	var deleteCard = function(cardId){
+	let getUserCards = () => {
+		let userActivities = [];
+		let user = AuthFactory.getUser();
+
 		return $q(function(resolve, reject){
-			$http
-			.delete(firebaseURL + "activities/" + cardId + ".json")
-			.success(function(objectFromFirebase){
-				resolve(objectFromFirebase);
+			$http.get(`${firebaseURL}.activities.json?orderBy="uid"&equalTo="${user.uid}"`)
+			.success(function(cardObject){
+				let cardCollection = cardObject;
+				Object.keys(cardCollection).forEach(function(key){
+					cardCollection[key].id=key;
+					userActivities.push(cardCollection[key]);
+					resolve(userActivities);
+				})
+				.err(function(error){
+					reject(error);
+				});
 			});
 		});
 	};
 
-	var postNewCard = function(newCard){
+	let addToUserCards = (cardToAdd) => {
 		let user = AuthFactory.getUser();
+		console.log("user", user);
+
 		return $q(function(resolve, reject){
-			$http.post(
-				firebaseURL + "activites.json",
+			$http.post(`${firebaseURL}activities.json`,
 				JSON.stringify({
-					cost: newCard.cost,
-					description: newCard.description,
-					location: newCard.description,
-					name: newCard.name,
+					cost: cardToAdd.cost,
+					description: cardToAdd.description,
+					location: cardToAdd.location,
+					name: cardToAdd.name,
 					public: false,
-					time: newCard.time,
+					time: cadToAdd.time,
 					uid: user.uid
 				})
-			)
-			.success(
+				).success(
 				function(objectFromFirebase){
 					resolve(objectFromFirebase);
 				}
@@ -52,6 +64,6 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		});
 	};
 
-return {getCardList:getCardList, deleteCard:deleteCard, postNewCard:postNewCard}
+return {getBaseCards:getBaseCards, getUserCards:getUserCards, addToUserCards:addToUserCards};
 
-})
+});

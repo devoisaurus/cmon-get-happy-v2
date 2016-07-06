@@ -1,9 +1,10 @@
-app.controller("UserCardsCtrl", function($scope, $http, $location, cardStorage){
-	$scope.myActivities = [];
+"use strict";
 
-	cardStorage.addToMyCards().then(function(myCards){
-		console.log("myCards from promise", myCards);
-			$scope.myActivities=myCards;
+app.controller("UserCardsCtrl", function($scope, $location, cardStorage){
+	$scope.userActivities = [];
+
+	cardStorage.getUserCards().then(function(cardCollection){
+			$scope.userActivities=cardCollection;
 		});
 	}
 );
