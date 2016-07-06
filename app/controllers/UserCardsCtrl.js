@@ -5,6 +5,7 @@ app.controller("UserCardsCtrl", function($scope, $location, cardStorage){
 
 	cardStorage.getUserCards().then(function(userCards){
 			$scope.userActivities=userCards;
+			console.log("userCards", userCards);
 		});
 	}
 );
