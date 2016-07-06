@@ -58,7 +58,6 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 					cardCollection[key].id=key;
 					userActivities.push(cardCollection[key]);
 					resolve(userActivities);
-					console.log("userActivities", userActivities);
 
 				})
 				.error(function(error){
