@@ -5,9 +5,9 @@ app.controller("UserCardsCtrl", function($scope, cardStorage, $routeParams){
 
 	cardStorage.getUserCards().then(function(cardCollection){
 			$scope.userCards=cardCollection;
-		})[0];
+		});
 
-	$scope.getSingleCard = $scope.userCards.filter(function(card){
+	$scope.selectedCard = $scope.userCards.filter(function(card){
 		return card.id === $routeParams.cardId;
 	})[0];
 

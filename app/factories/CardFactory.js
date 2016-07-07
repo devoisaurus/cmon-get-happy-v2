@@ -11,7 +11,9 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 				let cardCollection = cardObject;
 				Object.keys(cardCollection).forEach(function(key){
 					cardCollection[key].id=key;
+					if (cardCollection[key].uid === undefined){
 					baseCards.push(cardCollection[key]);
+					}
 				})
 				resolve(baseCards);
 			});
@@ -19,7 +21,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 	};
 
 	let getUserCards = () => {
-		var userActivities = [];
+		var userCards = [];
 		let user = AuthFactory.getUser();
 
 		return $q(function(resolve, reject){
@@ -28,7 +30,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 				let cardCollection = cardObject;
 				Object.keys(cardCollection).forEach(function(key){
 					cardCollection[key].id=key;
-					userActivities.push(cardCollection[key]);
+					userCards.push(cardCollection[key]);
 					resolve(userCards);
 				});
 			});
@@ -89,7 +91,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 	});
 	};
 
-	let getSingleCard = (selectedCard => {
+	let getSingleCard = (selectedCard) => {
 		return $q(function(resolve, reject){
 			console.log("selectedCard", selectedCard);
 
@@ -101,7 +103,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 				resolve(cardObject);
 			});
 		});
-	});
+	};
 
   let updateCard = (cardId, newCard) => {
   	let user = AuthFactory.getUser();
@@ -115,7 +117,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 					location: newCard.location,
 					cost: newCard.cost,
 					time: newCard.time,
-					uid: user.uid  				
+					uid: user.uid
   			})
   			)
   		.success(function(objectfromFirebase){

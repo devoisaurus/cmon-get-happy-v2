@@ -15,36 +15,36 @@ let isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 app.config(function($routeProvider){
 	$routeProvider.
 		when('/', {
-			templateUrl: 'partials/all-cards.html',
+			templateUrl: "partials/all-cards.html",
 			controller: "BaseCardsCtrl",
 			resolve: {isAuth}
 		}).
-		when('#/cards/all', {
-			templateUrl: 'partials/all-cards.html',
+		when('/cards/all', {
+			templateUrl: "partials/all-cards.html",
 			controller: "BaseCardsCtrl",
 			resolve: {isAuth}
 		}).
-		when('#/cards/user', {
-			templateUrl: 'partials/my-card.html',
+		when('/cards/user', {
+			templateUrl: "partials/my-cards.html",
 			controller: "UserCardsCtrl",
 			resolve: {isAuth}
 		}).
-		when('#/cards/add', {
-			templateUrl: 'partials/add-card.html',
+		when('/cards/add', {
+			templateUrl: "partials/add-card.html",
 			controller: "NewCardCtrl",
 			resolve: {isAuth}
 		}).
-		when('#/cards/:cardId/edit', {
-			templateUrl: 'partials/add-card.html',
+		when('/cards/:cardId/edit', {
+			templateUrl: "partials/add-card.html",
 			controller: "EditCardCtrl",
 			resolve: {isAuth}
 		}).
 		when('/login', {
-			templateUrl:'partials/login.html',
+			templateUrl:"partials/login.html",
 			controller: "LoginCtrl",
 		}).
 		when('/logout', {
-			templateUrl: 'partials/login.html',
+			templateUrl: "partials/login.html",
 			controller: "LoginCtrl",
 		})
 });

@@ -51,4 +51,6 @@ return {
    }
   };
 
+  return {isAuthenticated:isAuthenticated, getUser:getUser, authenticate:authenticate, storeUser:storeUser}
+
 });

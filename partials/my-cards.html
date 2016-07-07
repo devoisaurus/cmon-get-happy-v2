@@ -1,4 +1,3 @@
-
 <h1>My cards</h1>
   <div class="row">
    <div ng-repeat="kitten in userCards">
@@ -10,7 +9,7 @@
           <div>Cost: {{kitten.cost}}</div>
           <div>Time: {{kitten.time}}</div>
           <div>Location: {{kitten.location}}</div>
-          <a class="waves-effect waves-light btn" ng-click="getSingleCard(kitten)" ng-href="#/userCards/{{kitten.id}}/edit">Edit card</a>
+          <a class="waves-effect waves-light btn" ng-click="getSingleCard(kitten)" ng-href="#/cards/userCards/{{kitten.id}}/edit">Edit card</a>
           <a class="waves-effect waves-light btn" ng-click="deleteCard(kitten)">Delete card</a>
          </div>
        </div>

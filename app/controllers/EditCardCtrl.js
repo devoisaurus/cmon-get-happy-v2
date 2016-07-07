@@ -12,7 +12,7 @@ app.controller("EditCardCtrl", function($scope, $location, $routeParams, cardSto
 	console.log("ahoy there card");
 
 	$scope.addNewCard = function(){
-		cardStorage.editCard($routeParams.cardId, $scope.newCard)
+		cardStorage.updateCard($routeParams.cardId, $scope.newCard)
 		.then(function successCallback(response){
 			$location.url("#/cards/user");
 		});
