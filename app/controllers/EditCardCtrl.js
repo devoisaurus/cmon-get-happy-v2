@@ -14,7 +14,8 @@ app.controller("EditCardCtrl", function($scope, $location, $routeParams, cardSto
 	$scope.addNewCard = function(){
 		cardStorage.updateCard($routeParams.cardId, $scope.newCard)
 		.then(function successCallback(response){
-			$location.url("#/cards/user");
+			Materialize.toast(`"${newCard.name}" has been updated!`, 4000, 'light-green darken-4');
+			$location.url("/cards/userCards");
 		});
 	};
 });

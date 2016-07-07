@@ -34,7 +34,7 @@ app.config(function($routeProvider){
 			controller: "NewCardCtrl",
 			resolve: {isAuth}
 		}).
-		when('/cards/:cardId/edit', {
+		when('/cards/userCards/:cardId/edit', {
 			templateUrl: "partials/add-card.html",
 			controller: "EditCardCtrl",
 			resolve: {isAuth}
