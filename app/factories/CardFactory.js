@@ -86,7 +86,17 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 	});
 	};
 
+	let deleteCard = (cardToDelete) => {
+		return $q(function(resolve, reject){
+			$http.
+			delete(`${firebaseURL}baseCards/${cardToDelete.id}.json`)
+			.success(function(objectfromFirebase){
+				resolve(objectfromFirebase);
+			});
+		});
+	};
 
-return {getBaseCards:getBaseCards, addToUserCards:addToUserCards, getUserCards:getUserCards, postNewCard:postNewCard};
+
+return {getBaseCards:getBaseCards, addToUserCards:addToUserCards, getUserCards:getUserCards, postNewCard:postNewCard, deleteCard:deleteCard};
 
 });

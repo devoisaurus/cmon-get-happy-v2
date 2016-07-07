@@ -7,5 +7,14 @@ app.controller("UserCardsCtrl", function($scope, $location, cardStorage){
 			$scope.userActivities=userCards;
 			console.log("userCards", userCards);
 		});
+
+$scope.deleteCard = function(cardToDelete){
+	cardStorage.deleteCard(cardToDelete).then(function(response){
+		cardStorage.getUserCards().then(function(cardCollection){
+			$scope.baseCards = cardCollection;
+		});
+	});
+};
+
 	}
 );

@@ -1,17 +1,18 @@
+
 <h1>My cards</h1>
   <div class="row">
-	 <div ng-repeat="card in userActivities">
-		  <div class="col s12 m6">
-			 <div class="card-panel purple">
-  			 <div class="card-content white-text">
-    			<span class="card-title">{{card.name}}</span>
-    			<div>Description: {{card.description}}</div>
-    			<div>Cost: {{card.cost}}</div>
-    			<div>Time: {{card.time}}</div>
-    			<div>Location: {{card.location}}</div>
-          <a class="waves-effect waves-light btn" href="#">Delete card</a>
-  			 </div>
-			 </div>
-		  </div>
+   <div ng-repeat="card in userActivities">
+      <div class="col s12 m6">
+       <div class="card-panel purple">
+         <div class="card-content white-text">
+          <span class="card-title">{{card.name}}</span>
+          <div>Description: {{card.description}}</div>
+          <div>Cost: {{card.cost}}</div>
+          <div>Time: {{card.time}}</div>
+          <div>Location: {{card.location}}</div>
+          <a class="waves-effect waves-light btn" ng-click="deleteCard(card)">Delete card</a>
+         </div>
+       </div>
+      </div>
     </div>
   </div>
