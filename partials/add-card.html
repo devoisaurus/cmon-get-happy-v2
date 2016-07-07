@@ -1,0 +1,27 @@
+<h1>{{title}}</h1>
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="name" type="text" ng-model="newCard.name">
+        <label for="name">Name</label>
+      </div>
+			<div class="input-field col s12">
+				<input id="description" type="text" ng-model="newCard.description">
+				<label for="description">Description</label>
+			</div>
+			<div class="input-field col s6">
+				<input id="cost" type="text" ng-model="newCard.cost">
+				<label for="cost">Cost</label>
+      </div>
+			<div class="input-field col s6">
+				<input id="time" type="text" ng-model=
+				newCard.time>
+				<label for="time">Time</label>
+			</div>
+			<div class="input-field col s12">
+				<input id="location" type="text" ng-model="newCard.location">
+				<label for="location">Location</label>
+			</div>
+			<button ng-click="addNewCard(newCard)">{{submitButtonText}}</button>
+		</div>
+	</form>
