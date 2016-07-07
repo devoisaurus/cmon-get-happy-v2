@@ -14,7 +14,7 @@ app.controller("EditCardCtrl", function($scope, $location, $routeParams, cardSto
 	$scope.addNewCard = function(){
 		cardStorage.editCard($routeParams.cardId, $scope.newCard)
 		.then(function successCallback(response){
-			$location.url("cards/user");
+			$location.url("#/cards/user");
 		});
 	};
 });

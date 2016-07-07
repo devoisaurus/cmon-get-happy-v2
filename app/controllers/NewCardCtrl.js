@@ -1,7 +1,7 @@
 "use strict";
 
-app.controller("NewCardCtrl", function($scope, $http, $location, cardStorage){
-	$scope.title = "New Card";
+app.controller("NewCardCtrl", function($scope, $location, cardStorage){
+	$scope.title = "Add a New Card";
 	$scope.submitButtonText = "Add New Card";
 	$scope.newCard = {
 		cost: "",
@@ -12,11 +12,11 @@ app.controller("NewCardCtrl", function($scope, $http, $location, cardStorage){
 		uid: ""
 	};
 
-	$scope.addNewCard = function(){
-		cardStorage.postNewCard($scope.newCard)
+	$scope.addNewCard = function(newCard){
+		cardStorage.addNewCard(newCard)
 		.then(function successCallback(response){
-			console.log(response);
-			$location.url("cards/all")
+			Materialize.toast(`"${newCard.name}" added to your cards!`, 4000, 'light-green darken-4')
+			$location.url("#/cards/user")
 		});
 	};
 });

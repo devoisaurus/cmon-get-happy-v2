@@ -1,20 +1,23 @@
 "use strict";
 
-app.controller("UserCardsCtrl", function($scope, $location, cardStorage){
-	$scope.userActivities = [];
+app.controller("UserCardsCtrl", function($scope, cardStorage, $routeParams){
+	$scope.userCards = [];
 
-	cardStorage.getUserCards().then(function(userCards){
-			$scope.userActivities=userCards;
-			console.log("userCards", userCards);
-		});
+	cardStorage.getUserCards().then(function(cardCollection){
+			$scope.userCards=cardCollection;
+		})[0];
+
+	$scope.getSingleCard = $scope.userCards.filter(function(card){
+		return card.id === $routeParams.cardId;
+	})[0];
 
 $scope.deleteCard = function(cardToDelete){
 	cardStorage.deleteCard(cardToDelete).then(function(response){
+		Materialize.toast(`"${cardToDelete.name}" removed from your cards!`, 4000, 'light-green darken-4');
 		cardStorage.getUserCards().then(function(cardCollection){
-			$scope.baseCards = cardCollection;
+			$scope.userCards = cardCollection;
 		});
 	});
 };
 
-	}
-);
+	});

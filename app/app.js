@@ -19,22 +19,22 @@ app.config(function($routeProvider){
 			controller: "BaseCardsCtrl",
 			resolve: {isAuth}
 		}).
-		when('/cards/all', {
+		when('#/cards/all', {
 			templateUrl: 'partials/all-cards.html',
 			controller: "BaseCardsCtrl",
 			resolve: {isAuth}
 		}).
-		when('/cards/add', {
+		when('#/cards/user', {
+			templateUrl: 'partials/my-card.html',
+			controller: "UserCardsCtrl",
+			resolve: {isAuth}
+		}).
+		when('#/cards/add', {
 			templateUrl: 'partials/add-card.html',
 			controller: "NewCardCtrl",
 			resolve: {isAuth}
 		}).
-		when('/cards/user', {
-			templateUrl: 'partials/my-cards.html',
-			controller: "UserCardsCtrl",
-			resolve: {isAuth}
-		}).
-		when('cards/user/:cardId/edit', {
+		when('#/cards/:cardId/edit', {
 			templateUrl: 'partials/add-card.html',
 			controller: "EditCardCtrl",
 			resolve: {isAuth}
@@ -46,6 +46,5 @@ app.config(function($routeProvider){
 		when('/logout', {
 			templateUrl: 'partials/login.html',
 			controller: "LoginCtrl",
-		}).
-		otherwise('/');
+		})
 });

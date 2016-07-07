@@ -1,17 +1,16 @@
 "use strict";
 
-app.controller("BaseCardsCtrl", function($scope, $http, $location, cardStorage){
+app.controller("BaseCardsCtrl", function($scope, $location, cardStorage){
 	$scope.baseCards = [];
 
 	cardStorage.getBaseCards().then(function(cardCollection){
 		$scope.baseCards = cardCollection;
 	});
 
-	$scope.newUserCard = function(card){
-		cardStorage.addToUserCards(card)
-		.then(function successCallback(response){
-			console.log(response);
-			$location.url("/cards/user")
-		})
-	}
+	$scope.addToUserCards = (kitten) => {
+
+		cardStorage.addToUserCards(kitten).then(() => {
+			Materialize.toast(`"${kitten.name}" has been added to your cards!`, 4000, 'light-green darken-4');
+		});
+	};
 });
