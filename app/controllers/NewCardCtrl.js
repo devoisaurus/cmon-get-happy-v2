@@ -1,12 +1,13 @@
 "use strict";
 
 app.controller("NewCardCtrl", function($scope, $http, $location, cardStorage){
+	$scope.title = "New Card";
+	$scope.submitButtonText = "Add New Card";
 	$scope.newCard = {
 		cost: "",
 		description: "",
 		location: "",
 		name: "",
-		public: false,
 		time: "",
 		uid: ""
 	};
@@ -15,7 +16,7 @@ app.controller("NewCardCtrl", function($scope, $http, $location, cardStorage){
 		cardStorage.postNewCard($scope.newCard)
 		.then(function successCallback(response){
 			console.log(response);
-			$location.url("cards/user")
+			$location.url("cards/all")
 		});
 	};
 });

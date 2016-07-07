@@ -8,7 +8,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		console.log("user", user);
 
 		return $q(function(resolve, reject){
-			$http.get(`${firebaseURL}baseCards.json`)
+			$http.get(`https://cmon-get-happy.firebaseio.com/baseCards.json`)
 			.success(function(cardObject){
 				let cardCollection = cardObject;
 				Object.keys(cardCollection).forEach(function(key){
@@ -21,13 +21,20 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		});
 	};
 
-	let addToUserCards = () => {
-		var userCards = [];
+	let addToUserCards = (userCard) => {
 		let user = AuthFactory.getUser();
 			console.log("user2", user);
 
-	return $q(function(resolve, reject){
-		$http.post(`${firebaseURL}baseCards/users.json`)
+		return $q(function(resolve, reject){
+			$http.post(`https://cmon-get-happy.firebaseio.com/baseCards.json`,
+				JSON.stringify({
+					cost: "",
+					description: "",
+					location: "",
+					name: "",
+					time: "",
+					uid: ""
+				}))
 		.success(function(cardObject){
 			let cardCollection = cardObject;
 			Object.keys(cardCollection).forEach(function(key){
@@ -45,7 +52,7 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		console.log("user3", user);
 
 		return $q(function(resolve, reject){
-			$http.get(`${firebaseURL}baseCards.users.json?orderBy="uid"&equalTo="${user.uid}"`)
+			$http.get(`${firebaseURL}baseCards.json?orderBy="uid"&equalTo="${user.uid}"`)
 			.success(function(cardObject){
 				let cardCollection = cardObject;
 				Object.keys(cardCollection).forEach(function(key){
@@ -58,7 +65,28 @@ app.factory("cardStorage", function($q, $http, firebaseURL, AuthFactory){
 		});
 	};
 
+	let postNewCard = (newCard) => {
+		let user = AuthFactory.getUser();
+		return $q(function(resolve, reject){
+			$http.post(`https://cmon-get-happy.firebaseio.com/baseCards.json`,
+				JSON.stringify({
+					cost: newCard.cost,
+					description: newCard.description,
+					location: newCard.location,
+					name: newCard.name,
+					time: newCard.time,
+					uid: user.uid
+				})
+				)
+			.success(
+				function(objectfromFirebase){
+					resolve(objectfromFirebase);
+				}
+				);
+	});
+	};
 
-return {getBaseCards:getBaseCards, addToUserCards:addToUserCards, getUserCards:getUserCards};
+
+return {getBaseCards:getBaseCards, addToUserCards:addToUserCards, getUserCards:getUserCards, postNewCard:postNewCard};
 
 });
