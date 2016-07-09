@@ -13,7 +13,7 @@ app.controller("UserCardsCtrl", function($scope, cardStorage, $routeParams){
 
 $scope.deleteCard = function(cardToDelete){
 	cardStorage.deleteCard(cardToDelete).then(function(response){
-		Materialize.toast(`"${cardToDelete.name}" removed from your cards!`, 4000, 'light-green darken-4');
+		Materialize.toast(`"${cardToDelete.name}" removed from your cards!`, 4000, 'cyan darken-4');
 		cardStorage.getUserCards().then(function(cardCollection){
 			$scope.userCards = cardCollection;
 		});

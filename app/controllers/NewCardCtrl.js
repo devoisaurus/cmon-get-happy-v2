@@ -15,7 +15,7 @@ app.controller("NewCardCtrl", function($scope, $location, cardStorage){
 	$scope.addNewCard = function(newCard){
 		cardStorage.addNewCard(newCard)
 		.then(function successCallback(response){
-			Materialize.toast(`"${newCard.name}" added to your cards!`, 4000, 'light-green darken-4')
+			Materialize.toast(`"${newCard.name}" added to your cards!`, 4000, 'cyan darken-4')
 			$location.url("cards/user")
 		});
 	};

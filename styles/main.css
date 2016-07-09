@@ -1,6 +1,13 @@
 body {
-  background-color: SkyBlue; }
+  background-color: MediumTurquoise; 
+}
 
 h1 {
   text-align: center;
-  color: Indigo; }
+  color: Teal; 
+}
+
+.nav-wrapper {
+	background-color: LightSeaGreen;
+}
+
